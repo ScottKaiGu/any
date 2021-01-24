@@ -199,7 +199,6 @@ void Person::Serialize(Writer<StringBuffer>& writer) const {
     writer.EndObject();
 }
 
-
 void Person::DeSerialize(const string& json) {
     //  assert(document.HasMember("hello"));
     // assert(document["hello"].IsString());
@@ -223,30 +222,6 @@ void Person::DeSerialize(const string& json) {
             _friends.push_back(ff);
         }
     }
-}
-
-std::string dump(Person p)
-{
-    StringBuffer s;
-    Writer<StringBuffer> writer(s);
-    p.Serialize(writer);
-    return s.GetString();
-}
-
-std::string dump(Singer p)
-{
-    StringBuffer s;
-    Writer<StringBuffer> writer(s);
-    p.Serialize(writer);
-    return s.GetString();
-}
-
-std::string dump(Friend p)
-{
-    StringBuffer s;
-    Writer<StringBuffer> writer(s);
-    p.Serialize(writer);
-    return s.GetString();
 }
 
 std::string dump(Any p)
@@ -276,7 +251,7 @@ int main() {
 
     auto json = dump(p1);// 序列化
     std::cout << json << std::endl; // 打印序列化结果
-    std::cout << p1 << std::endl; // 打印 Person 对象 
+
     aaa = p1;
     json = dump(aaa);// 序列化
     std::cout << json << std::endl; // 打印序列化结果
