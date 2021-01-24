@@ -249,6 +249,14 @@ std::string dump(Friend p)
     return s.GetString();
 }
 
+std::string dump(Any p)
+{
+    StringBuffer s;
+    Writer<StringBuffer> writer(s);
+    p.Serialize(writer);
+    return s.GetString();
+}
+
 // 实现一个支持 json 序列化/反序列化、支持 std::cout 输出的 any 类型。json 序列化库采用rapidjson。
 int main() {
     json::Any aaa;
@@ -269,7 +277,10 @@ int main() {
     auto json = dump(p1);// 序列化
     std::cout << json << std::endl; // 打印序列化结果
     std::cout << p1 << std::endl; // 打印 Person 对象 
-
+    aaa = p1;
+    json = dump(aaa);// 序列化
+    std::cout << json << std::endl; // 打印序列化结果
+ 
     // Person p22;
     // p22.DeSerialize(json);
     // std::cout << p22 << std::endl; // 打印 Person 对象 
