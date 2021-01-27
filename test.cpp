@@ -4,7 +4,8 @@
 using namespace std;
 using namespace rapidjson;
 
-std::string dump(const Any& any)
+template <class T>
+std::string dump(const T& any)
 {
     StringBuffer s;
     Writer<StringBuffer> writer(s);
@@ -12,20 +13,21 @@ std::string dump(const Any& any)
     return s.GetString();
 }
 
-Person parse(const string& json, const Person& person_aux)
+template <class T>
+Any parse(const string& json, const T& person_aux)
 {
     Document document;
     document.Parse(json);
-    Person person(person_aux);
-    person.DeSerialize(document.GetObject());
-    return person;
+    Any any(person_aux);
+    any.DeSerialize(document.GetObject());
+    return any;
 }
 
 // 实现一个支持 json 序列化/反序列化、支持 std::cout 输出的 any 类型。json 序列化库采用rapidjson。
 int main() {
     json::Any aaa;
     json::Any a(string("s123"));
-	cout << a  << endl;
+    cout << a << endl;
     Friend f1{"my best friend", Singer{"rocker", 18}};
     Friend f2{"new friend", "little girl"};
     Friend f3{"third friend", 3};

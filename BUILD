@@ -19,13 +19,13 @@ cc_library (
   name = 'singer',
   incs = 'include',
   srcs = 'singer.cpp',
-    hdrs=[],
+  hdrs=[],
 )
 cc_library (
   name = 'friend',
   incs = 'include',
   srcs = 'friend.cpp',
-    hdrs=[],
+  hdrs=[],
 )
 cc_library (
   name = 'address',
